@@ -218,3 +218,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Food agent：DATA_DIR（照片與 Excel 紀錄）與執行紀錄
+# DATA_DIR 建議放在 repo 外面；若放在 repo 裡，請用 data/
+data/
+photos/
+*.xlsx
+logs/
