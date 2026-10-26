@@ -1,0 +1,24 @@
+[project]
+name = "place-agent"
+version = "0.1.0"
+description = "Discord 風景照片記錄 agent：用 claude -p 判斷地點、介紹當地特色並記到 Excel"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "discord-py>=2.7.1",
+    "openpyxl>=3.1.5",
+    "pillow>=13.0.0",
+    "python-dotenv>=1.2.4",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.20,<0.13"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

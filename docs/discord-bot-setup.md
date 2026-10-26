@@ -128,17 +128,27 @@ application 是你在 Discord 開發者後台登記的「一個應用程式」�
 1. 左邊選單按 **「OAuth2」**。
 2. 往下捲到 **「OAuth2 URL Generator」** 這一區。
 3. 在 **「SCOPES」** 的一堆勾選框裡，只勾 **「bot」**。
-4. 勾了之後，下面會多出 **「BOT PERMISSIONS」** 這一區。在 **「TEXT PERMISSIONS」** 和 **「GENERAL PERMISSIONS」** 底下，**只勾這三個**：
+4. 勾了之後，下面會多出 **「BOT PERMISSIONS」** 這一區。在 **「TEXT PERMISSIONS」** 和 **「GENERAL PERMISSIONS」** 底下，**只勾這四個**：
 
    | 權限 | 位置 | 為什麼需要 |
    |---|---|---|
    | **View Channels** | GENERAL PERMISSIONS | 看得到 `food-log` 頻道和裡面的新訊息 |
-   | **Send Messages** | TEXT PERMISSIONS | 回覆「處理中」和結果 |
-   | **Read Message History** | TEXT PERMISSIONS | 用「回覆」功能掛在原照片底下，以及找到修正要對應的那則結果 |
+   | **Send Messages** | TEXT PERMISSIONS | 回覆結果 |
+   | **Read Message History** | TEXT PERMISSIONS | 用「回覆」功能回在原照片底下 |
+   | **Add Reactions** | TEXT PERMISSIONS | 在照片上加 ⏳、✅、❌ |
 
    - **不要勾 「Administrator」**（管理員）。萬一 token 外流，管理員權限能讓對方刪掉整個 Server。
-   - 把自己發的訊息改成結果，不需要另外的權限。
 5. 最下面 **「GENERATED URL」** 會出現一條網址，按旁邊的 **「Copy」**。
+
+> **找不到 URL Generator，或產生的網址打不開時**：自己組網址。
+> 1. 左邊選單按 **「General Information」**，複製 **「APPLICATION ID」**（一串數字，不是密碼，也不是 token）。
+> 2. 把它填進下面這行的 `APPLICATION_ID` 位置，前後不要留空白：
+>    ```
+>    https://discord.com/oauth2/authorize?client_id=APPLICATION_ID&scope=bot&permissions=68672
+>    ```
+>    `68672` 就代表上面那四個權限。
+>
+> **已經用舊網址（三個權限）邀請過 bot 的話**：通常不用重邀。伺服器預設就允許所有人（包括 bot）新增反應。萬一 agent 在終端機印出「加反應失敗」，再用上面這條網址重新邀請一次就好。
 
 ---
 
@@ -148,7 +158,7 @@ application 是你在 Discord 開發者後台登記的「一個應用程式」�
 2. 頁面會顯示 bot 的名字。在 **「新增至伺服器」**（Add to server）下拉選單，選你在 `discord-server-setup.md` 建的那個 Server。
    - 選單裡只會出現你有「管理伺服器」權限的 Server。你自己建的一定會在裡面。
 3. 按 **「繼續」**（Continue）。
-4. 下一頁列出第 6 步勾的三個權限，確認沒錯，按 **「授權」**（Authorize）。
+4. 下一頁列出第 6 步勾的四個權限，確認沒錯，按 **「授權」**（Authorize）。
 5. 如果出現「我不是機器人」的驗證，照指示完成。
 6. 看到「已授權」（Authorized）的畫面就完成了，可以關掉這個分頁。
 7. 回到 Discord App，你的 Server 右邊成員清單會出現這個 bot，名字旁邊有 **「APP」**（或「BOT」）標籤。
